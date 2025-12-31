@@ -30,7 +30,10 @@ for (let i = 0; i < 10; i++) {
         logs.push(args.map(arg => String(arg)).join(' '));
       };
 
-      // Execute code
+      // SECURITY NOTE: eval() is used here for demonstration purposes only.
+      // In a production environment, use a sandboxed execution environment
+      // such as Web Workers or an iframe with proper restrictions.
+      // This implementation should only be used with trusted code.
       eval(code);
 
       console.log = originalLog;

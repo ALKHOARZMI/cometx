@@ -1,8 +1,13 @@
 import { pipeline } from '@xenova/transformers';
 
+// Type definition for the AI model
+interface TextGenerationModel {
+  (text: string, options?: any): Promise<any>;
+}
+
 class AIService {
   private static instance: AIService;
-  private model: any = null;
+  private model: TextGenerationModel | null = null;
   private isLoading: boolean = false;
   private isReady: boolean = false;
 

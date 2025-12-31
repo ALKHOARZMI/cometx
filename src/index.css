@@ -9,6 +9,34 @@
   }
 }
 
+/* Custom utility classes */
+.neon-text {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.btn-neon {
+  background-color: rgba(6, 78, 59, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  background-color: rgba(5, 78, 46, 0.3);
+  box-shadow: 0 0 2px #10b981, 0 0 10px #10b981;
+}
+
+.shadow-neon {
+  box-shadow: 0 0 5px #10b981, 0 0 20px #10b981;
+}
+
+.shadow-neon-sm {
+  box-shadow: 0 0 2px #10b981, 0 0 10px #10b981;
+}
+
 /* XTerm.js styles */
 .xterm {
   height: 100%;
