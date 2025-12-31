@@ -1,73 +1,152 @@
-# React + TypeScript + Vite
+# CometX - Sovereign Local-First AI Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
 
-Currently, two official plugins are available:
+![CometX](https://img.shields.io/badge/CometX-AI_Platform-10b981?style=for-the-badge)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![React](https://img.shields.io/badge/React-19.2.0-61dafb?style=for-the-badge&logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**[English](#english) | [العربية](#arabic)**
 
-## React Compiler
+</div>
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## <a name="english"></a> 🌟 Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**CometX** is a sovereign, local-first AI platform built with **React 18**, **TypeScript**, and **Vite**. It features a stunning dark neon emerald green UI and provides **100% on-device AI processing** using Transformers.js - ensuring complete privacy and no cloud dependencies.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### ✨ Key Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- 🤖 **100% Local AI Processing** - All AI operations run on-device using @xenova/transformers
+- 🌐 **Multilingual Support** - Full Arabic/English support with RTL toggle
+- 📊 **Interactive Dashboard** - Real-time system metrics with Chart.js visualizations
+- 💬 **AI Chat Interface** - Privacy-first conversational AI assistant
+- 💻 **Integrated Terminal** - Full-featured xterm.js terminal emulator
+- ⚡ **Monaco Code Editor** - Professional IDE experience with syntax highlighting
+- 🏭 **App Factory** - Rapid application scaffolding system
+- 🎛️ **Service Orchestrator** - Manage and monitor system services
+- 🎨 **Dark Neon Theme** - Beautiful emerald green accent colors
+- 🔒 **Privacy-First Design** - No data leaves your device
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🚀 Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/ALKHOARZMI/cometx.git
+cd cometx
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🐳 Docker Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Build and run with Docker
+docker build -t cometx .
+docker run -p 80:80 cometx
 ```
+
+### 📚 Documentation
+
+- [Quick Start Guide](docs/QUICKSTART.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [دليل البدء السريع](docs/QUICKSTART_AR.md)
+- [دليل النشر](docs/DEPLOYMENT_AR.md)
+- [Complete Documentation](docs/README.md)
+
+### 🛠️ Tech Stack
+
+- React 18.2.0 + TypeScript 5.9
+- Vite 7.2.4
+- Tailwind CSS 4.1.18
+- @xenova/transformers 2.17.2
+- Chart.js + Monaco Editor + XTerm.js
+- i18next for internationalization
+
+### 📄 License
+
+MIT License - See [LICENSE](LICENSE) file for details.
+
+---
+
+## <a name="arabic"></a> 🌟 نظرة عامة
+
+**CometX** هي منصة ذكاء اصطناعي محلية وذات سيادة مبنية باستخدام **React 18** و **TypeScript** و **Vite**. تتميز بواجهة مستخدم رائعة بألوان خضراء زمردية نيون داكنة وتوفر **معالجة ذكاء اصطناعي 100% على الجهاز** باستخدام Transformers.js - مما يضمن الخصوصية الكاملة وعدم الاعتماد على السحابة.
+
+### ✨ الميزات الرئيسية
+
+- 🤖 **معالجة ذكاء اصطناعي محلية 100%** - تعمل جميع عمليات الذكاء الاصطناعي على الجهاز
+- 🌐 **دعم متعدد اللغات** - دعم كامل للعربية/الإنجليزية مع إمكانية التبديل RTL
+- 📊 **لوحة معلومات تفاعلية** - مقاييس النظام في الوقت الفعلي
+- 💬 **واجهة محادثة ذكية** - مساعد ذكاء اصطناعي يحترم الخصوصية
+- 💻 **طرفية مدمجة** - محاكي طرفية xterm.js كامل الميزات
+- ⚡ **محرر أكواد Monaco** - تجربة IDE احترافية
+- 🏭 **مصنع التطبيقات** - نظام سريع لإنشاء التطبيقات
+- 🎛️ **منسق الخدمات** - إدارة ومراقبة خدمات النظام
+- 🎨 **سمة نيون داكنة** - ألوان تمييز خضراء زمردية جميلة
+- 🔒 **تصميم يعطي الأولوية للخصوصية** - لا تترك بياناتك جهازك
+
+### 🚀 البدء السريع
+
+```bash
+# استنساخ المستودع
+git clone https://github.com/ALKHOARZMI/cometx.git
+cd cometx
+
+# تثبيت التبعيات
+npm install
+
+# بدء خادم التطوير
+npm run dev
+
+# البناء للإنتاج
+npm run build
+```
+
+### 🐳 نشر Docker
+
+```bash
+# البناء والتشغيل مع Docker
+docker build -t cometx .
+docker run -p 80:80 cometx
+```
+
+### 📚 التوثيق
+
+- [دليل البدء السريع](docs/QUICKSTART_AR.md)
+- [دليل النشر](docs/DEPLOYMENT_AR.md)
+- [Quick Start Guide](docs/QUICKSTART.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [التوثيق الكامل](docs/README.md)
+
+### 🛠️ المكدس التقني
+
+- React 18.2.0 + TypeScript 5.9
+- Vite 7.2.4
+- Tailwind CSS 4.1.18
+- @xenova/transformers 2.17.2
+- Chart.js + Monaco Editor + XTerm.js
+- i18next للترجمة والتدويل
+
+### 📄 الترخيص
+
+ترخيص MIT - راجع ملف [LICENSE](LICENSE) للحصول على التفاصيل.
+
+---
+
+<div align="center">
+
+**Built with ❤️ for Privacy and Sovereignty**
+
+**مبني بـ ❤️ من أجل الخصوصية والسيادة**
+
+</div>
