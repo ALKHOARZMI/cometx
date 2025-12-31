@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "chat": "المحادثة الذكية",
+    "terminal": "الطرفية",
+    "editor": "محرر الأكواد",
+    "factory": "مصنع التطبيقات",
+    "orchestrator": "المنسق"
+  },
+  "dashboard": {
+    "title": "لوحة معلومات النظام",
+    "cpuUsage": "استخدام المعالج",
+    "memoryUsage": "استخدام الذاكرة",
+    "modelStatus": "حالة نموذج الذكاء الاصطناعي",
+    "activeProcesses": "العمليات النشطة",
+    "systemMetrics": "مقاييس النظام",
+    "performanceChart": "الأداء عبر الزمن"
+  },
+  "chat": {
+    "title": "مساعد المحادثة الذكي",
+    "placeholder": "اكتب رسالتك...",
+    "send": "إرسال",
+    "clear": "مسح السجل",
+    "modelLoading": "جاري تحميل النموذج...",
+    "modelReady": "النموذج جاهز",
+    "processing": "جاري المعالجة...",
+    "localAI": "ذكاء اصطناعي محلي 100% - الخصوصية أولاً"
+  },
+  "terminal": {
+    "title": "الطرفية المدمجة",
+    "clear": "مسح",
+    "newTab": "علامة تبويب جديدة"
+  },
+  "editor": {
+    "title": "محرر الأكواد",
+    "run": "تشغيل",
+    "save": "حفظ",
+    "format": "تنسيق",
+    "language": "اللغة"
+  },
+  "factory": {
+    "title": "مصنع التطبيقات",
+    "create": "إنشاء تطبيق",
+    "template": "اختر قالب",
+    "name": "اسم التطبيق",
+    "description": "الوصف"
+  },
+  "orchestrator": {
+    "title": "منسق النظام",
+    "services": "الخدمات",
+    "status": "الحالة",
+    "start": "بدء",
+    "stop": "إيقاف",
+    "restart": "إعادة تشغيل"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "direction": "اتجاه النص",
+    "ltr": "من اليسار إلى اليمين",
+    "rtl": "من اليمين إلى اليسار"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "close": "إغلاق"
+  }
+}
