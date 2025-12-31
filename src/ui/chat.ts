@@ -3,8 +3,8 @@
  * Main chat interface for CometX
  */
 
-import { cometx, type ChatResponse } from '../cometx';
-import type { Conversation, Message } from '../lobes/memory';
+import { cometx } from '../cometx';
+import type { Message } from '../lobes/memory';
 import { t, applyRTL, formatTime, formatExecutionTime, type Language } from '../utils/i18n';
 
 export class ChatUI {
@@ -149,7 +149,7 @@ export class ChatUI {
 
   private formatContent(content: string): string {
     // Basic markdown-like formatting
-    let formatted = content
+    const formatted = content
       .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')

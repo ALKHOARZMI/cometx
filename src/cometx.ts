@@ -4,7 +4,7 @@
  * Privacy-first: All processing happens on-device
  */
 
-import { reasoningLobe, type ModelType, type ReasoningResponse } from './lobes/reasoning';
+import { reasoningLobe, type ModelType } from './lobes/reasoning';
 import { memoryLobe, type Conversation, type Message, type UserPreferences } from './lobes/memory';
 import { executionLobe, type ExecutionResult } from './lobes/execution';
 
@@ -110,10 +110,6 @@ class CometXCore {
     // Check if this is a code execution request
     const executionResult = await this.tryExecuteCode(content);
 
-    // Get conversation history for context
-    const conversation = await memoryLobe.getConversation(convId);
-    const context = this.buildContext(conversation?.messages || []);
-
     // Generate AI response
     const response = await reasoningLobe.generate(content, {
       systemPrompt: this.getSystemPrompt(executionResult),
@@ -164,16 +160,6 @@ class CometXCore {
     }
 
     return undefined;
-  }
-
-  /**
-   * Build context from conversation history
-   */
-  private buildContext(messages: Message[]): string {
-    return messages
-      .slice(-5) // Last 5 messages for context
-      .map((m) => `${m.role}: ${m.content}`)
-      .join('\n');
   }
 
   /**

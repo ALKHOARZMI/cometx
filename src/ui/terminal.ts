@@ -4,7 +4,7 @@
  */
 
 import { executionLobe } from '../lobes/execution';
-import { t, formatExecutionTime, type Language } from '../utils/i18n';
+import { formatExecutionTime } from '../utils/i18n';
 
 export class TerminalUI {
   private container: HTMLElement;
@@ -12,7 +12,6 @@ export class TerminalUI {
   private inputElement: HTMLInputElement;
   private history: string[] = [];
   private historyIndex = -1;
-  private currentLanguage: Language = 'en';
 
   constructor(containerId: string) {
     const container = document.getElementById(containerId);
@@ -175,9 +174,5 @@ export class TerminalUI {
       this.historyIndex = newIndex;
       this.inputElement.value = '';
     }
-  }
-
-  public setLanguage(lang: Language): void {
-    this.currentLanguage = lang;
   }
 }

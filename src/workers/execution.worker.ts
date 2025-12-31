@@ -98,13 +98,9 @@ function safeEval(code: string, context: Record<string, any> = {}): any {
     })();
   `;
 
-  try {
-    // Create and execute function with limited scope
-    const func = new Function(...contextKeys, wrappedCode);
-    return func(...contextValues);
-  } catch (error) {
-    throw error;
-  }
+  // Create and execute function with limited scope
+  const func = new Function(...contextKeys, wrappedCode);
+  return func(...contextValues);
 }
 
 // Handle messages from main thread

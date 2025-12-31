@@ -11,9 +11,6 @@ import './style.css';
 
 // Main app state
 let currentView: 'chat' | 'dashboard' | 'terminal' = 'chat';
-let chatUI: ChatUI;
-let dashboardUI: DashboardUI;
-let terminalUI: TerminalUI;
 
 /**
  * Initialize the application
@@ -28,11 +25,6 @@ async function init(): Promise<void> {
       model: 'phi-3-mini',
       language: 'en',
     });
-
-    // Initialize UI components
-    chatUI = new ChatUI('app');
-    dashboardUI = new DashboardUI('app');
-    terminalUI = new TerminalUI('app');
 
     // Setup navigation
     setupNavigation();
@@ -80,16 +72,19 @@ async function showView(view: typeof currentView): Promise<void> {
   appContainer.innerHTML = '';
 
   switch (view) {
-    case 'chat':
-      chatUI = new ChatUI('app');
+    case 'chat': {
+      new ChatUI('app');
       break;
-    case 'dashboard':
-      dashboardUI = new DashboardUI('app');
+    }
+    case 'dashboard': {
+      const dashboardUI = new DashboardUI('app');
       await dashboardUI.render();
       break;
-    case 'terminal':
-      terminalUI = new TerminalUI('app');
+    }
+    case 'terminal': {
+      new TerminalUI('app');
       break;
+    }
   }
 }
 

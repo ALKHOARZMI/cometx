@@ -49,9 +49,7 @@ class ReasoningLobe {
       const modelId = modelMap[config.model];
       
       // Create text generation pipeline
-      this.generator = await pipeline('text-generation', modelId, {
-        device: 'auto', // Will use WebGPU if available, otherwise WASM
-      });
+      this.generator = await pipeline('text-generation', modelId);
 
       this.currentModel = config.model;
       this.isInitialized = true;
