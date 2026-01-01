@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "chat": "AI Chat",
+    "terminal": "Terminal",
+    "editor": "Code Editor",
+    "factory": "App Factory",
+    "orchestrator": "Orchestrator"
+  },
+  "dashboard": {
+    "title": "System Dashboard",
+    "cpuUsage": "CPU Usage",
+    "memoryUsage": "Memory Usage",
+    "modelStatus": "AI Model Status",
+    "activeProcesses": "Active Processes",
+    "systemMetrics": "System Metrics",
+    "performanceChart": "Performance Over Time"
+  },
+  "chat": {
+    "title": "AI Chat Assistant",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "clear": "Clear History",
+    "modelLoading": "Loading AI model...",
+    "modelReady": "Model ready",
+    "processing": "Processing...",
+    "localAI": "100% Local AI - Privacy First"
+  },
+  "terminal": {
+    "title": "Integrated Terminal",
+    "clear": "Clear",
+    "newTab": "New Tab"
+  },
+  "editor": {
+    "title": "Code Editor",
+    "run": "Run",
+    "save": "Save",
+    "format": "Format",
+    "language": "Language"
+  },
+  "factory": {
+    "title": "App Factory",
+    "create": "Create App",
+    "template": "Select Template",
+    "name": "App Name",
+    "description": "Description"
+  },
+  "orchestrator": {
+    "title": "System Orchestrator",
+    "services": "Services",
+    "status": "Status",
+    "start": "Start",
+    "stop": "Stop",
+    "restart": "Restart"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "direction": "Text Direction",
+    "ltr": "Left to Right",
+    "rtl": "Right to Left"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close"
+  }
+}
