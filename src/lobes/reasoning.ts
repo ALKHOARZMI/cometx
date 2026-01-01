@@ -96,7 +96,7 @@ class ReasoningLobe {
       };
     } catch (error) {
       console.error('Failed to generate response:', error);
-      throw new Error(`Generation failed: ${error}`);
+      throw new Error(`Generation failed: ${error.message || error}`);
     }
   }
 
