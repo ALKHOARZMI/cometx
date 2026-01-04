@@ -148,36 +148,46 @@ export class ChatUI {
   }
 
   private formatContent(content: string): string {
-    // First, escape HTML to prevent XSS attacks
+    // Escape HTML to prevent XSS attacks
     const escapeHtml = (text: string): string => {
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
     };
 
-    // Escape the entire content first
-    let formatted = escapeHtml(content);
+    // Process content with proper escaping for each element type
+    let formatted = content;
 
-    // Then apply markdown-like formatting safely
-    // Code blocks (triple backticks)
+    // Code blocks (triple backticks) - escape content inside
     formatted = formatted.replace(/```([\s\S]*?)```/g, (_match, code) => {
-      return `<pre><code>${code}</code></pre>`;
+      return `<pre><code>${escapeHtml(code)}</code></pre>`;
     });
 
-    // Inline code (single backticks)
+    // Inline code (single backticks) - escape content inside
     formatted = formatted.replace(/`([^`]+)`/g, (_match, code) => {
-      return `<code>${code}</code>`;
+      return `<code>${escapeHtml(code)}</code>`;
     });
 
-    // Bold text
+    // Bold text - escape content inside
     formatted = formatted.replace(/\*\*(.*?)\*\*/g, (_match, text) => {
-      return `<strong>${text}</strong>`;
+      return `<strong>${escapeHtml(text)}</strong>`;
     });
 
-    // Italic text
+    // Italic text - escape content inside
     formatted = formatted.replace(/\*(.*?)\*/g, (_match, text) => {
-      return `<em>${text}</em>`;
+      return `<em>${escapeHtml(text)}</em>`;
     });
+
+    // Escape any remaining unformatted text
+    // Split by HTML tags we just created and escape the text between them
+    const parts = formatted.split(/(<[^>]+>)/);
+    formatted = parts.map((part, index) => {
+      // Keep HTML tags we created, escape everything else
+      if (index % 2 === 0 && part && !part.match(/^<[^>]+>$/)) {
+        return escapeHtml(part);
+      }
+      return part;
+    }).join('');
 
     // Line breaks
     formatted = formatted.replace(/\n/g, '<br>');
