@@ -94,7 +94,7 @@ class ReasoningLobe {
         model: this.currentModel || 'unknown',
         timestamp: Date.now(),
       };
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to generate response:', error);
       throw new Error(`Generation failed: ${error.message || error}`);
     }

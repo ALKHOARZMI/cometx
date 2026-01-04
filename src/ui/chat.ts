@@ -148,13 +148,39 @@ export class ChatUI {
   }
 
   private formatContent(content: string): string {
-    // Basic markdown-like formatting
-    const formatted = content
-      .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
-      .replace(/`([^`]+)`/g, '<code>$1</code>')
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/\n/g, '<br>');
+    // First, escape HTML to prevent XSS attacks
+    const escapeHtml = (text: string): string => {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    };
+
+    // Escape the entire content first
+    let formatted = escapeHtml(content);
+
+    // Then apply markdown-like formatting safely
+    // Code blocks (triple backticks)
+    formatted = formatted.replace(/```([\s\S]*?)```/g, (_match, code) => {
+      return `<pre><code>${code}</code></pre>`;
+    });
+
+    // Inline code (single backticks)
+    formatted = formatted.replace(/`([^`]+)`/g, (_match, code) => {
+      return `<code>${code}</code>`;
+    });
+
+    // Bold text
+    formatted = formatted.replace(/\*\*(.*?)\*\*/g, (_match, text) => {
+      return `<strong>${text}</strong>`;
+    });
+
+    // Italic text
+    formatted = formatted.replace(/\*(.*?)\*/g, (_match, text) => {
+      return `<em>${text}</em>`;
+    });
+
+    // Line breaks
+    formatted = formatted.replace(/\n/g, '<br>');
     
     return formatted;
   }
