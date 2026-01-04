@@ -150,46 +150,67 @@ export class ChatUI {
   private formatContent(content: string): string {
     // Escape HTML to prevent XSS attacks
     const escapeHtml = (text: string): string => {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     };
 
-    // Process content with proper escaping for each element type
-    let formatted = content;
-
-    // Code blocks (triple backticks) - escape content inside
-    formatted = formatted.replace(/```([\s\S]*?)```/g, (_match, code) => {
-      return `<pre><code>${escapeHtml(code)}</code></pre>`;
+    // Process in order: code blocks first, then inline code, then bold/italic
+    // This prevents nested markdown from breaking
+    
+    // 1. Code blocks (triple backticks) - these take highest priority
+    const codeBlockPlaceholders: string[] = [];
+    let formatted = content.replace(/```([\s\S]*?)```/g, (_match, code) => {
+      const placeholder = `__CODEBLOCK_${codeBlockPlaceholders.length}__`;
+      codeBlockPlaceholders.push(`<pre><code>${escapeHtml(code)}</code></pre>`);
+      return placeholder;
     });
 
-    // Inline code (single backticks) - escape content inside
+    // 2. Inline code (single backticks)
+    const inlineCodePlaceholders: string[] = [];
     formatted = formatted.replace(/`([^`]+)`/g, (_match, code) => {
-      return `<code>${escapeHtml(code)}</code>`;
+      const placeholder = `__INLINECODE_${inlineCodePlaceholders.length}__`;
+      inlineCodePlaceholders.push(`<code>${escapeHtml(code)}</code>`);
+      return placeholder;
     });
 
-    // Bold text - escape content inside
+    // 3. Bold text (must be processed before italic to handle ** before *)
+    const boldPlaceholders: string[] = [];
     formatted = formatted.replace(/\*\*(.*?)\*\*/g, (_match, text) => {
-      return `<strong>${escapeHtml(text)}</strong>`;
+      const placeholder = `__BOLD_${boldPlaceholders.length}__`;
+      boldPlaceholders.push(`<strong>${escapeHtml(text)}</strong>`);
+      return placeholder;
     });
 
-    // Italic text - escape content inside
-    formatted = formatted.replace(/\*(.*?)\*/g, (_match, text) => {
-      return `<em>${escapeHtml(text)}</em>`;
+    // 4. Italic text
+    const italicPlaceholders: string[] = [];
+    formatted = formatted.replace(/\*([^*]+)\*/g, (_match, text) => {
+      const placeholder = `__ITALIC_${italicPlaceholders.length}__`;
+      italicPlaceholders.push(`<em>${escapeHtml(text)}</em>`);
+      return placeholder;
     });
 
-    // Escape any remaining unformatted text
-    // Split by HTML tags we just created and escape the text between them
-    const parts = formatted.split(/(<[^>]+>)/);
-    formatted = parts.map((part, index) => {
-      // Keep HTML tags we created, escape everything else
-      if (index % 2 === 0 && part && !part.match(/^<[^>]+>$/)) {
-        return escapeHtml(part);
-      }
-      return part;
-    }).join('');
+    // 5. Escape any remaining text (everything not in placeholders)
+    formatted = escapeHtml(formatted);
 
-    // Line breaks
+    // 6. Restore placeholders in reverse order
+    italicPlaceholders.forEach((replacement, index) => {
+      formatted = formatted.replace(`__ITALIC_${index}__`, replacement);
+    });
+    boldPlaceholders.forEach((replacement, index) => {
+      formatted = formatted.replace(`__BOLD_${index}__`, replacement);
+    });
+    inlineCodePlaceholders.forEach((replacement, index) => {
+      formatted = formatted.replace(`__INLINECODE_${index}__`, replacement);
+    });
+    codeBlockPlaceholders.forEach((replacement, index) => {
+      formatted = formatted.replace(`__CODEBLOCK_${index}__`, replacement);
+    });
+
+    // 7. Convert line breaks
     formatted = formatted.replace(/\n/g, '<br>');
     
     return formatted;
